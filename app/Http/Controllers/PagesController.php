@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\ContactMail;
 use App\Models\Student;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Intervention\Image\Facades\Image;
 
 class PagesController extends Controller
@@ -28,29 +30,26 @@ class PagesController extends Controller
         return view('create');
     }
 
-    /*public function store(Request $request){
+    public function store(Request $request){
         $student = new Student();
         $student->username = $request->username;
         $student->password = $request->password;
-        /*$student->age = $request->age;
+        $student->email = $request->email;
         $img = Image::make($request->file('image'));
         $filename = $request->file('image')->getClientOriginalName();
         $img->save('storage/image/'.$filename);
-        $student->image = $filename;*/
-        /*$student->save();
-        return redirect('/list');*/
+        $student->image = $filename;
+        $student->save();
+        return redirect('/login');
+    }
 
     public function list(){
+
+        Mail::to('ashraya.karki@sifal.deerwalk.edu.np')
+            ->send(new ContactMail("Ashraya"));
         $user = Student::get();
         return view('List')->with('student',$user);
     }
-    public function store(Request $request){
-    $user = new student();
-    $user->username = $request->username;
-        $user->password =Hash::make($request->password);
-        $user->save();
-
-}
 
     public function login(){
         $student = Student::get();
@@ -75,5 +74,21 @@ class PagesController extends Controller
     public function delete($id){
         Student::where('id',$id)->delete();
         return redirect('/list');
+    }
+
+    public function login1(Request $request)
+    {
+        $email = $request->input('email');
+        $password = $request->input('password');
+
+        $student = Student::where('email', $email)->first();
+
+        if ($student && $student->password === $password) {
+            // login successful
+            return redirect('/list');
+        }
+
+        // login failed
+        return redirect()->back()->withErrors(['Invalid email or password']);
     }
 }

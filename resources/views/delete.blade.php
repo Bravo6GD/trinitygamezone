@@ -1,4 +1,3 @@
-<?php
 <html>
 <body></body>
 <a href="{{url('/create')}}">
