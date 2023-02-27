@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Mail\ContactMail;
+use App\Models\Game;
 use App\Models\Student;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
@@ -31,16 +33,16 @@ class PagesController extends Controller
     }
 
     public function store(Request $request){
-        $student = new Student();
-        $student->username = $request->username;
-        $student->password = $request->password;
-        $student->email = $request->email;
+        $student = new Game();
+        $student->Genre = $request->Genre;
+        $student->Game = $request->Game;
+        $student->description = $request->Description;
         $img = Image::make($request->file('image'));
         $filename = $request->file('image')->getClientOriginalName();
         $img->save('storage/image/'.$filename);
         $student->image = $filename;
         $student->save();
-        return redirect('/login');
+        return view('welcome');
     }
 
     public function list(){
@@ -52,12 +54,11 @@ class PagesController extends Controller
     }
 
     public function login(){
-        $student = Student::get();
+        $student = Game::get();
         return view('login');
     }
     public function signup(){
-        $student = Student::get();
-        return view('register');
+        return view('welcome');
     }
     public function edit($id){
         $student = student::where('id',$id)->first();
@@ -90,5 +91,15 @@ class PagesController extends Controller
 
         // login failed
         return redirect()->back()->withErrors(['Invalid email or password']);
+    }
+
+    /**
+     * @param Request $request
+     */
+    public function register(Request $request){
+        $student = new User();
+        $student->Username = $request->Username;
+        $student->Password = Hash::make( $request->Password);
+        $student->Email = $request->Email;
     }
 }

@@ -10,12 +10,14 @@
 <body>
 <form method="post" action="{{action([\App\Http\Controllers\PagesController::class,'store'])}}" enctype="multipart/form-data">
     @csrf
-    <label for="">Name:</label>
-    <input type="text" name="name" required>
-    <label for="">Address</label>
-    <input type="text" name="address" required>
-    <label for="">Age:</label>
-    <input type="number" name="age" required>
+    <label for="">Genre:</label>
+    <input type="text" name="Genre" required>
+    <label for="">Game</label>
+    <input type="text" name="Game" required>
+    <label for="">Description</label>
+    <input type="text" name="Description" required>
+    <label for="">Publisher:</label>
+    <input type="text" name="Publisher" required>
     <label for="">Image:</label>
     <input type="file" name="image" required>
     <input type="submit">

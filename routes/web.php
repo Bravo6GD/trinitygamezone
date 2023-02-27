@@ -19,10 +19,10 @@ Route::get('/profile', [\App\Http\Controllers\PagesController::class,'profile'])
 Route::get('/create', [\App\Http\Controllers\PagesController::class,'create']);
 Route::get('/profile',[\App\Http\Controllers\PagesController::class,'profile']);
 Route::post('/create',[\App\Http\Controllers\PagesController::class,'store']);
-Route::post('/signup',[\App\Http\Controllers\PagesController::class,'store']);
+Route::post('/signup',[\App\Http\Controllers\PagesController::class,'register']);
 Route::get('/list',[\App\Http\Controllers\PagesController::class,'list']);
 Route::get('/login',[\App\Http\Controllers\PagesController::class,'login']);
-Route::get('/signup',[\App\Http\Controllers\PagesController::class,'signup']);
+Route::get('/register',[\App\Http\Controllers\PagesController::class,'signup']);
 Route::get('/edit/{id}',[\App\Http\Controllers\PagesController::class,'edit'    ]);
 Route::post('edit',[\App\Http\Controllers\PagesController::class,'update']);
 Route::get('/delete/{id}',[\App\Http\Controllers\PagesController::class,'delete']);
