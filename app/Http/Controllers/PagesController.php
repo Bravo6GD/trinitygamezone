@@ -28,18 +28,18 @@ class PagesController extends Controller
         return view('profile')->with($data1);
     }
 
-    public function create(){
-        return view('create');
+    public function create_game(){
+        return view('create_game');
     }
 
-    public function store(Request $request){
+    public function store_game(Request $request){
         $student = new Game();
         $student->Genre = $request->Genre;
-        $student->Game = $request->Game;
-        $student->description = $request->Description;
+        $student->name = $request->name;
+        $student->description = $request->description;
         $img = Image::make($request->file('image'));
         $filename = $request->file('image')->getClientOriginalName();
-        $img->save('storage/image/'.$filename);
+        $img->save('storage/image/Gamephoto'.$filename);
         $student->image = $filename;
         $student->save();
         return view('welcome');
@@ -75,22 +75,6 @@ class PagesController extends Controller
     public function delete($id){
         Student::where('id',$id)->delete();
         return redirect('/list');
-    }
-
-    public function login1(Request $request)
-    {
-        $email = $request->input('email');
-        $password = $request->input('password');
-
-        $student = Student::where('email', $email)->first();
-
-        if ($student && $student->password === $password) {
-            // login successful
-            return redirect('/list');
-        }
-
-        // login failed
-        return redirect()->back()->withErrors(['Invalid email or password']);
     }
 
     /**
