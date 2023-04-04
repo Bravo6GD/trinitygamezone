@@ -13,7 +13,7 @@
 <body>
   <div class="sidebar">
     <div class="logo-details">
-    
+
         <div class="logo_name">Trinity Games</div>
         <i class='bx bx-menu' id="btn" ></i>
     </div>
@@ -68,28 +68,28 @@
   <section class="home-section" style="background-color: black; overflow-x:hidden;">
 
       <div class="text" style="color: white;">Create game</div>
-    
-      <form method="POST" action="{{route('store.game')}}" style="color: white;">
+
+      <form method="POST" action="{{route('store.game')}}" style="color: white;" enctype="multipart/form-data">
                 @csrf
                 <div style="margin: 0rem 7rem; font-size:1.3rem;">
 			        	<label for="name">Enter Game Name: </label><br>
 			        	<input class="full-width" type="text" placeholder="Enter Game Name" id="name" name="name" style="border: 2px solid white; background: transparent; color: white; width: 20vw; height: 7vh;" autofocus>
-			      </div> 
+			      </div>
                   <br>
 			     	<div style="margin: 0rem 7rem; font-size:1.3rem;">
 			        	<label for="genre">Enter Genre: </label><br>
 			        	<input class="full-width" type="text" placeholder="Action/Adventure" id="genre" name="genre"style="border: 2px solid white; background: transparent; color: white; width: 20vw; height: 7vh" autofocus>
-			      </div> 
+			      </div>
                   <br>
                   <div style="margin: 0rem 7rem; font-size:1.3rem;">
 			        	<label for="password">Enter Game's Description</label><br>
 			        	<input class="full-width" type="text" placeholder="No spoilers Please" id="description" name="description" style="border: 2px solid white; background: transparent; color: white; width: 20vw; height: 7vh">
-			      </div> 
+			      </div>
                   <br>
                   <div style="margin: 0rem 7rem; font-size:1.3rem;">
 			        	<label for="password">Enter Game Banner</label><br>
 			        	<input class="full-width" type="file" placeholder="No spoilers Please" id="image" name="image" style="text-align: center;border: 2px solid white; background: transparent; color: white; width: 20vw; height: 7vh">
-			      </div> 
+			      </div>
                   <br>
                   <input  style="margin: 0rem 8rem; font-size:1.3rem; font-family: Agency_fb; border: 2px solid white; background: transparent; color: white; width: 20vw; height: 7vh" class="button-primary" type="submit" value="Submit">
                 </form>
